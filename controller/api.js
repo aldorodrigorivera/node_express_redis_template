@@ -3,7 +3,7 @@ const { succes } = require("../response");
 const axios = require('axios');
 
 async function isMe(req, res){
-    const data = await redis.getCache(`GITHUB_USERNAME:aldorodrigorivera`);
+    const data = await redis.getCache(`GITHUB_USERNAME:${process.env.GITHUB}`);
     return data ? 
     succes(res, data) : 
     succes(res,(await axios.get(`https://api.github.com/users/${process.env.GITHUB}`)).data);
